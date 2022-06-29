@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Box } from 'components/Box';
 
-import { Section } from './Section';
-import { FeedbackOptions } from './FeedbackOptions';
-import { Statistics } from './Statistics';
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './Options/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
 
 export class Feedback extends Component {
   state = {
@@ -32,8 +32,8 @@ export class Feedback extends Component {
     const { good, neutral, bad } = this.state;
     return (
       <Box>
+        <Section title={'Please Leave feedback'} />
         <Box as="section">
-          <Section title={'Please Leave feedback'} />
           <FeedbackOptions
             options={Object.keys(this.state)}
             onLeaveFeedback={this.addRespond}
