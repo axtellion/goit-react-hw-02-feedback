@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Box } from 'components/Box';
+import { Text } from './Feedback.styled';
 
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './Options/FeedbackOptions';
@@ -50,7 +51,7 @@ export class Feedback extends Component {
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <p>No feedback given</p>
+            <Text>There is no feedback</Text>
           )}
         </Box>
       </Box>
