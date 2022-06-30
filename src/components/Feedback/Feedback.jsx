@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Box } from 'components/Box';
 import { Text } from './Feedback.styled';
 
 import { Section } from './Section/Section';
@@ -32,29 +31,24 @@ export class Feedback extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <Box>
-        <Section title={'Please Leave feedback'} />
-        <Box as="section">
-          <FeedbackOptions
-            options={Object.keys(this.state)}
-            onLeaveFeedback={this.addRespond}
+      <Section title={'Please Leave feedback'}>
+        <FeedbackOptions
+          options={Object.keys(this.state)}
+          onLeaveFeedback={this.addRespond}
+        />
+        {this.countTotalFeedback() > 0 ? (
+          <Statistics
+            title={'Statistics'}
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
           />
-        </Box>
-        <Box as="section">
-          {this.countTotalFeedback() > 0 ? (
-            <Statistics
-              title={'Statistics'}
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
-            />
-          ) : (
-            <Text>There is no feedback</Text>
-          )}
-        </Box>
-      </Box>
+        ) : (
+          <Text>There is no feedback</Text>
+        )}
+      </Section>
     );
   }
 }
