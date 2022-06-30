@@ -4,6 +4,7 @@ import { Text } from './Feedback.styled';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './Options/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Box } from 'components/Box';
 
 export class Feedback extends Component {
   state = {
@@ -31,24 +32,26 @@ export class Feedback extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <Section title={'Please Leave feedback'}>
-        <FeedbackOptions
-          options={Object.keys(this.state)}
-          onLeaveFeedback={this.addRespond}
-        />
-        {this.countTotalFeedback() > 0 ? (
-          <Statistics
-            title={'Statistics'}
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
+      <Box as={'section'}>
+        <Section title={'Please Leave feedback'}>
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.addRespond}
           />
-        ) : (
-          <Text>There is no feedback</Text>
-        )}
-      </Section>
+          {this.countTotalFeedback() > 0 ? (
+            <Statistics
+              title={'Statistics'}
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Text>There is no feedback</Text>
+          )}
+        </Section>
+      </Box>
     );
   }
 }
